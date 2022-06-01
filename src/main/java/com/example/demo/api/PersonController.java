@@ -22,14 +22,13 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping(value="/person")
+    @PostMapping(value="/add")
     public void addPerson(@RequestBody Person person){
-        System.out.println("Ok");
         personService.addPerson(person);
     }
 
-    @GetMapping
-    public List<Person> getAllPeople(){
+    @GetMapping(value="/all")
+    public List<Person> getAllPerson(){
         return personService.getAllPeople();
     }
 

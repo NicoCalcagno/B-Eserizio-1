@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -16,9 +16,8 @@ public class Person {
     private String name;
 
 
-    public Person(@JsonProperty("id") Long id,@JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public Person() {
+
     }
 
     public void setId(Long id){
