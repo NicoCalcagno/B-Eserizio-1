@@ -1,33 +1,32 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.PersonDao;
+import com.example.demo.dao.PersonRepositoryAccessDb;
 import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PersonService {
 
-    private final PersonDao personDao;
+
+    private final PersonRepositoryAccessDb personRepository;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDao") PersonDao personDao){
-        this.personDao = personDao;
+    public PersonService(PersonRepositoryAccessDb personRepository){
+        this.personRepository = personRepository;
     }
 
-    public int addPerson(Person person){
-        return personDao.insertPerson(person);
+    public void addPerson(Person person){
+        personRepository.save(person);
     }
 
     public List<Person> getAllPeople(){
-        return personDao.selectAllPeople();
+        return (List<Person>)personRepository.findAll();
     }
 
+    /*
     public Optional<Person> getPersonById(UUID id){
         return personDao.selectPersonById(id);
     }
@@ -39,5 +38,7 @@ public class PersonService {
     public int updatePerson(UUID id, Person newPerson){
         return personDao.updatePersonById(id, newPerson);
     }
+
+     */
 
 }

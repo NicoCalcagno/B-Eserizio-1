@@ -3,26 +3,28 @@ package com.example.demo.api;
 import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
-@RequestMapping("api/v1/person")
+
 @RestController
+@RequestMapping("/api/v2")
 public class PersonController {
+
 
     private final PersonService personService;
 
     @Autowired
     public PersonController(PersonService personService) {
+
         this.personService = personService;
     }
 
-    @PostMapping
+    @PostMapping(value="/person")
     public void addPerson(@RequestBody Person person){
+        System.out.println("Ok");
         personService.addPerson(person);
     }
 
@@ -31,6 +33,7 @@ public class PersonController {
         return personService.getAllPeople();
     }
 
+    /*
     @GetMapping(path = "{id}")
     public Person getPersonById(@PathVariable("id") UUID id){
         return personService.getPersonById(id).orElse(null);
@@ -44,5 +47,5 @@ public class PersonController {
     @PutMapping(path = "{id}")
     public void updatePerson(@PathVariable("id") UUID id,@RequestBody Person personToUpdate){
         personService.updatePerson(id, personToUpdate);
-    }
+    }*/
 }
