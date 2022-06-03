@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +12,13 @@ public class Person {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @ManyToOne
+    @JoinColumn(name = "id_job")
+    private Jobs job;
 
 
     public Person() {
@@ -35,4 +40,19 @@ public class Person {
     }
 
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Jobs getJob(){
+        return job;
+    }
+
+    public void setJob(Jobs job){
+        this.job = job;
+    }
 }

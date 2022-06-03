@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.PersonRepositoryAccessDb;
+import com.example.demo.model.Jobs;
 import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,19 +27,9 @@ public class PersonService {
         return (List<Person>)personRepository.findAll();
     }
 
-    /*
-    public Optional<Person> getPersonById(UUID id){
-        return personDao.selectPersonById(id);
-    }
 
-    public int deletePerson(UUID id){
-        return personDao.deletePersonById(id);
+    public Jobs getJobByPerson(String name, String surname){
+        return personRepository.FindJobByPersona(name, surname);
     }
-
-    public int updatePerson(UUID id, Person newPerson){
-        return personDao.updatePersonById(id, newPerson);
-    }
-
-     */
 
 }

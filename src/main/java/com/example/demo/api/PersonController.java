@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.model.Jobs;
 import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +33,9 @@ public class PersonController {
         return personService.getAllPeople();
     }
 
-    /*
-    @GetMapping(path = "{id}")
-    public Person getPersonById(@PathVariable("id") UUID id){
-        return personService.getPersonById(id).orElse(null);
-    }
 
-    @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") UUID id){
-        personService.deletePerson(id);
+    @GetMapping(value="/job")
+    public Jobs getJobByPerson(@RequestBody Person person){
+        return personService.getJobByPerson(person.getName(), person.getSurname());
     }
-
-    @PutMapping(path = "{id}")
-    public void updatePerson(@PathVariable("id") UUID id,@RequestBody Person personToUpdate){
-        personService.updatePerson(id, personToUpdate);
-    }*/
 }
