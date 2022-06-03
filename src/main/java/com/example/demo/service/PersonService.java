@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dao.PersonRepositoryAccessDb;
 import com.example.demo.model.Jobs;
 import com.example.demo.model.Person;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,12 @@ public class PersonService {
     }
 
     public List<Person> getAllPeople(){
-        return (List<Person>)personRepository.findAll();
+        return personRepository.findAll();
     }
 
 
     public Jobs getJobByPerson(String name, String surname){
-        return personRepository.FindJobByPersona(name, surname);
+        return personRepository.findJobByPersona(name, surname);
     }
 
 }

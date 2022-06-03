@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -22,7 +23,7 @@ public class Person {
 
 
     public Person() {
-
+        // Do nothing
     }
 
     public void setId(Long id){

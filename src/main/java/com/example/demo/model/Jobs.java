@@ -8,29 +8,30 @@ public class Jobs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_job;
+    @Column(name = "id_job")
+    private Long idjob;
 
     @Column(name = "name_job")
-    private String name_job;
+    private String namejob;
 
     public Jobs(){
-
+        // Do nothing
     }
 
 
-    public String getJob() {
-        return name_job;
+    public String getNamejob() {
+        return namejob;
     }
 
-    public void setJob(String name_job) {
-        this.name_job = name_job;
+    public void setNamejob(String namejob) {
+        this.namejob = namejob;
     }
 
-    public Long getId_job() {
-        return id_job;
+    public Long getIdjob() {
+        return idjob;
     }
 
-    public void setId_job(Long id_job) {
-        this.id_job = id_job;
+    public void setIdjob(Long idjob) {
+        this.idjob = idjob;
     }
 }
