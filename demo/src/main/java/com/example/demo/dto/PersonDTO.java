@@ -1,4 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.dto;
+
+import com.example.demo.entity.Jobs;
 
 public class PersonDTO {
 

@@ -1,13 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.PersonRepositoryAccessDb;
-import com.example.demo.model.Jobs;
-import com.example.demo.model.Person;
+import com.example.demo.entity.Jobs;
+import com.example.demo.entity.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -24,13 +25,15 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    public List<Person> getAllPeople(){
+    public List<Person> retrieveAllPeople(){
         return personRepository.findAll();
     }
 
 
-    public Jobs getJobByPerson(String name, String surname){
-        return personRepository.findJobByPersona(name, surname);
+    public String retrieveJobByPerson(String name, String surname){
+        return personRepository.findJobByPersona(name, surname)
+                .map(Jobs::getJobName)
+                .orElse("job not found");
     }
 
 }

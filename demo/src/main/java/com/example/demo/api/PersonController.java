@@ -1,8 +1,8 @@
 package com.example.demo.api;
 
-import com.example.demo.model.Jobs;
-import com.example.demo.model.Person;
-import com.example.demo.model.PersonDTO;
+
+import com.example.demo.entity.Person;
+import com.example.demo.dto.PersonDTO;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/person")
 public class PersonController {
 
 
@@ -20,7 +20,6 @@ public class PersonController {
 
     @Autowired
     public PersonController(PersonService personService) {
-
         this.personService = personService;
     }
 
@@ -34,13 +33,16 @@ public class PersonController {
     }
 
     @GetMapping(value="/all")
-    public List<Person> getAllPerson(){
-        return personService.getAllPeople();
+    public List<Person> retrieveAllPerson(){
+        List<Person> personToReturn = personService.retrieveAllPeople();
+        String surname = personToReturn.get(0).getSurname();
+        return personToReturn;
     }
 
 
     @GetMapping(value="/job")
-    public Jobs getJobByPerson(@RequestBody PersonDTO person){
-        return personService.getJobByPerson(person.getName(), person.getSurname());
+    public String retrieveJobByPerson(@RequestBody PersonDTO person){
+        // TODO: sistemare null safe
+        return personService.retrieveJobByPerson(person.getName(), person.getSurname());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 
 import javax.persistence.*;
@@ -18,7 +18,7 @@ public class Person {
     private String surname;
 
     @ManyToOne
-    @JoinColumn(name = "id_job")
+    @JoinColumn(name = "job_id")
     private Jobs job;
 
 
