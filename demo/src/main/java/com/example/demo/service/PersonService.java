@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -36,4 +36,31 @@ public class PersonService {
                 .orElse("job not found");
     }
 
+
+    public String retrieveNamesByChar(String input, int ind){
+        char c = Character.toLowerCase(input.charAt(ind));
+        String allNames = "";
+        try {
+            if(input.length() < 2 && Character.isLetter(input.charAt(0))
+                    && !input.substring(0, 1).matches("[^A-Za-z0-9 ]")
+                    && input.charAt(0) != 0 && input.charAt(0) != ' ') {
+
+                allNames = personRepository.findAll()
+                        .stream()
+                        .map(Person::getName)
+                        .filter(name -> Character.toLowerCase(name.charAt(0)) == c)
+                        .collect(Collectors.joining(", "));
+
+                if(allNames.isEmpty()) {
+                    allNames = "Nessun record trovato";
+                }
+
+            }else {
+                allNames = "Error, input non valido";
+            }
+        } catch(IndexOutOfBoundsException siobe){
+            allNames = "Error, input non valido " + siobe.getMessage();
+        }
+        return allNames;
+    }
 }

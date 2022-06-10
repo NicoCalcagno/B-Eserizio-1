@@ -30,6 +30,11 @@ public class JobsController {
         jobService.addJob(jobPersistent);
     }
 
+    @GetMapping
+    public List<Jobs> retrieveAllJobs(){
+        return jobService.retrieveAllJobs();
+    }
+
     @DeleteMapping(value="/{id}/delete")
     public void deleteJob(@PathVariable Long id){
         jobService.deleteJobById(id);
@@ -44,9 +49,6 @@ public class JobsController {
         return jobService.saveUpdate(job);
     }
 
-    @GetMapping
-    public List<Jobs> retrieveAllJobs(){
-        return jobService.retrieveAllJobs();
-    }
+
 
 }
